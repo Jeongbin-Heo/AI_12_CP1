@@ -48,6 +48,26 @@
 
 ## *III. 재구매 예측 모델 설계 및 해석*
 ### Feature Engineering
+<img width="900" alt="스크린샷 2022-09-11 오후 7 48 53" src="https://user-images.githubusercontent.com/97662174/189523411-9e929669-6b25-4c68-8225-6d033b9f7624.png">
+
+|Feature|Description|
+|:---:|---|
+|u_order_num|고객의 해당 쇼핑몰에서의 주문 횟수|
+|u_avg_basket|고객이 주문마다 장바구니에 담은 평균 제품의 수|
+|u_most_dow|고객이 일주일 중 가장 주문을 많이 한 요일|
+|u_most_hod|고객이 하루 중 가장 주문을 많이 한 시간대|
+|u_reorder|고객의 해당 쇼핑몰에서의 재주문율|
+|u_avg_gap|고객의 평균 주문 주기|
+|u_product_num|고객이 해당 쇼핑몰에서 주문한 제품의 총합|
+|p_order_num|모든 고객에 대한 특정 제품 주문 횟수|
+|p_reorder|모든 고객에 대한 특정 제품 재주문율|
+|p_avg_basketposition|모든 고객이 특정 제품을 장바구니에 담은 평균 순서|
+|up_order_num|고객의 특정 제품 주문 횟수|
+|up_reorder|고객의 특정 제품 재주문율|
+|up_avg_basketposition|고객이 특정 제품을 장바구니에 담은 평균 순서|
+|**reordered**|**재주문 여부 ( 0 or 1 ) [target]**|
+
+
 ### 기본 모델 설계
 ### Undersampling
 ### 하이퍼 파라미터 튜닝
