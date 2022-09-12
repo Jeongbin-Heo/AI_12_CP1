@@ -67,12 +67,65 @@
 |up_avg_basketposition|고객이 특정 제품을 장바구니에 담은 평균 순서|
 |**reordered**|**재주문 여부 ( 0 or 1 ) [target]**|
 
-
 ### 기본 모델 설계
+* 모델을 학습시키기 위한 학습 셋(80%)과 일반화 성능을 검증할 테스트 셋(20%)으로 데이터를 분리
+* **기본 모델** : `XGBoost`
+* **평가 지표** : `F1 Score`
+
+|Dataset|기본 모델|
+|:---:|:---:|
+|Train set|0.2010|
+|Test set|0.1909|
+
+* 기본 모델의 경우 테스트 셋에 대해 매우 저조한 일반화 성능을 나타냄
+* 데이터에 문제가 있다고 판단하여 데이터 분석 실시
+
 ### Undersampling
+
+<img width="446" alt="스크린샷 2022-09-12 오후 8 52 28" src="https://user-images.githubusercontent.com/97662174/189654023-a0cc745d-ac6a-4bf3-b225-dc027e49d347.png">
+
+* target 값인 `reordered` 클래스 비율 확인 결과 매우 편향된 데이터라는 것을 확인
+* 데이터 불균형이 심할 경우 모델의 학습 과정에서 일반화 성능을 이끌어내기 힘드므로 균형을 맞춰주어야 함
+
+<img width="557" alt="스크린샷 2022-09-12 오후 8 55 47" src="https://user-images.githubusercontent.com/97662174/189654310-26f1c5f1-f88e-4cce-ae1f-38269975b0c9.png">
+
+<img width="436" alt="스크린샷 2022-09-12 오후 8 54 51" src="https://user-images.githubusercontent.com/97662174/189654509-cc9d3bd6-b70c-42ad-8820-6da98bc6e1ee.png">
+
+* Undersampling 기법 중 하나인 Nearmiss 알고리즘을 사용하여 target 클래스의 균형을 맞춰줌
+
 ### 하이퍼 파라미터 튜닝
-### 모델 평가 및 
+* **기본 모델** : `Decision Tree` `Random Forest` `XGBoost`
+* 트레인 셋에 대해 **RandomizedSearchCV**를 통해 하이퍼파라미터를 튜닝하며 학습
+
+|HyperParameter|Decision Tree|Random Forest|XGBoost|
+|:---:|:---:|:---:|:---:|
+|1|max_depth|n_estimators|n_estimators|
+|2|min_samples_leaf|max_depth|max_depth|
+|3|max_features|min_samples_leaf|learning_rate|
+|4||max_features||
+
+### 모델 평가 및 선택
+* **평가 지표** : `F1 Score`
+* 테스트 셋에 대해 Score가 가장 높은 모델을 일반화 성능이 가장 우수한 최종 모델로 선정
+
+|Dataset|Decision Tree|Random Forest|XGBoost|
+|:---:|:---:|:---:|:---:|
+|Train set|0.7870|0.8069|0.7936|
+|Test set|0.7880|**0.8061**|0.7958|
+
+-> **Random Forest**를 최종 모델로 선정
 ### 모델 결과 해석
+최종 모델인 Random Forest 모델의 **특성 중요도**를 확인
+
+<img width="942" alt="스크린샷 2022-09-12 오후 9 07 58" src="https://user-images.githubusercontent.com/97662174/189656584-3cd28879-5582-4896-b1f6-45ec5d0be88f.png">
+
+
+> 가장 모델에 영향을 크게 미치는 특성
+>> `p_order_num` : 모든 고객에 대한 특정 제품 주문 횟수  
+>> `up_order_num` : 고객의 특정 제품 주문 횟수  
+>> `up_reorder` : 고객의 특정 제품 재주문율  
+>> `p_reorder` : 모든 고객에 대한 특정 제품 재주문율  
+>> 나머지 특성은 그 중요도가 0.1 이하로 매우 낮아 영향을 거의 미치지 않음
 
 ### &nbsp;
 
