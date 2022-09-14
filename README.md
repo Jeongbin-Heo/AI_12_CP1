@@ -1,7 +1,7 @@
 # 깜빠구니
 * **개요** : 식료품 재구매 요인 분석 및 맞춤 식료품 추천 서비스 개발
 * **진행 기간** : 2022. 06. 24 ~ 2022. 07. 07
-* **사용 스킬** : `etc`
+* **사용 스킬** : `Pandas` `Numpy` `Matplotlib` `Seaborn` `Scipy` `Scikit-learn` `XGBoost` `Surprise`
 
 
 ### &nbsp;
