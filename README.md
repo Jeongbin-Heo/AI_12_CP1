@@ -189,12 +189,25 @@
 
 ### 모델 활용
 * user_id = 1 인 고객에게 제품을 추천
-* 해당 고객의 
+* 해당 고객의 재주문율이 0.8 이상인 제품들의 product_id = `196` `10258` `12427` `25133`
+* 동일 카테고리 상품들의 재주문율을 예측, 가장 재주문율이 높을 것이라 예측한 상품뜰을 2개씩 추천
+
+<img width="1182" alt="모델활용" src="https://user-images.githubusercontent.com/97662174/190140877-ce464089-c32e-400b-9fd0-ec273dc8e05f.png">
 
 
 ### &nbsp;
 
 ## *V. 서비스 구현*
 ### 서비스 파이프라인
+<img width="602" alt="서비스파이프라인" src="https://user-images.githubusercontent.com/97662174/190141890-ae768dc5-5d9b-4c61-acac-a1230e49a06f.png">
+
 ### 홈페이지 접속
+<img width="812" alt="접속" src="https://user-images.githubusercontent.com/97662174/190141996-60058f36-989a-417a-9188-0098b744e4f6.png">
+
+* 하단에 제품을 추천하고 싶은 유저의 `user_id`를 입력 후 `화룡점정의 제품추천` 버튼 클릭
+
 ### 제품 추천 
+<img width="813" alt="추천결과" src="https://user-images.githubusercontent.com/97662174/190141912-a2ceb1a1-a280-4f2c-9c4a-b1cfac66c148.png">
+
+* 추천 모델 기반 고객별 맞춤 제
+
