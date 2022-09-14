@@ -209,5 +209,4 @@
 ### 제품 추천 
 <img width="813" alt="추천결과" src="https://user-images.githubusercontent.com/97662174/190141912-a2ceb1a1-a280-4f2c-9c4a-b1cfac66c148.png">
 
-* 추천 모델 기반 고객별 맞춤 제
-
+* 추천 모델 기반 고객별 맞춤 제품 추천
